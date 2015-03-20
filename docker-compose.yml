@@ -1,0 +1,24 @@
+web:
+  build: .
+  ports:
+   - "10080:80"
+  volumes:
+   - /opt/redmine/data:/home/redmine/data
+  links:
+   - postgresql
+postgresql:
+  image: sameersbn/postgresql:latest
+  volumes:
+   - /opt/postgresql/data:/var/lib/postgresql
+  environment:
+    DB_NAME: redmine_production
+    DB_USER: redmine
+    DB_PASS: password
+mysql:
+  image: sameersbn/mysql:latest
+  volumes:
+   - /opt/mysql/data:/var/lib/mysql
+  environment:
+    DB_NAME: redmine_production
+    DB_USER: redmine
+    DB_PASS: password
